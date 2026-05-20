@@ -3,7 +3,7 @@ version: '3.8'
 services:
   api:
     build: .
-    container_name: PetCompare_api
+    container_name: petcompare_api
     restart: always
     ports:
       - "8001:8001"
@@ -11,22 +11,4 @@ services:
       - .env
     volumes:
       - .:/app
-    depends_on:
-      - db
     command: python run.py
-
-  db:
-    image: postgres:15-alpine
-    container_name: PetCompare_db
-    restart: always
-    environment:
-      POSTGRES_USER: ${DB_USER:-postgres}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
-      POSTGRES_DB: ${DB_NAME:-PetCompare}
-    ports:
-      - "5432:5432"
-    volumes:
-      - PetCompare_pgdata:/var/lib/postgresql/data
-
-volumes:
-  PetCompare_pgdata:
