@@ -27,11 +27,11 @@ httpx==0.27.0
 lxml==5.2.2
 playwright==1.44.0
 
-# --- RPA Desktop ---
-pyautogui==0.9.54
-pywinauto==0.6.8
-Pillow==10.3.0
-opencv-python==4.9.0.80
+# --- RPA Desktop (Desativado no Linux Server, use apenas no Windows local) ---
+# pyautogui==0.9.54
+# pywinauto==0.6.8
+# Pillow==10.3.0
+# opencv-python==4.9.0.80
 
 # --- Processamento de Dados ---
 pandas==2.2.2
