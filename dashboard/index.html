@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetCompare | O Trivago para o seu Pet 🐾</title>
+    <meta name="description" content="Encontre os melhores preços em hotéis, creches e pet sitters para o seu animalzinho de estimação. Compare e economize!">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <i class="fa-solid fa-paw icon-logo"></i>
+                <span>PetCompare <strong>Compare</strong></span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active">Buscar Hospedagem</a>
+                <a href="#">Painel dos Robôs</a>
+                <button class="btn-primary">Entrar</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero / Search Section -->
+    <header class="hero">
+        <div class="hero-bg-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">Encontre o paraíso perfeito para o seu <span class="highlight">melhor amigo</span></h1>
+            <p class="hero-subtitle">Comparamos os melhores preços de hotéis, creches e pet sitters na sua região.</p>
+            
+            <div class="search-box glass-effect">
+                <div class="search-field">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <input type="text" id="citySearch" placeholder="Onde você mora? (Ex: São Paulo)">
+                </div>
+                <div class="search-divider"></div>
+                <div class="search-field">
+                    <i class="fa-solid fa-dog"></i>
+                    <select id="serviceType">
+                        <option value="hotel">Hotelzinho</option>
+                        <option value="creche">Creche (Daycare)</option>
+                        <option value="pet_sitter">Pet Sitter</option>
+                    </select>
+                </div>
+                <button id="btnSearch" class="btn-search">
+                    <i class="fa-solid fa-magnifying-glass"></i> Comparar Preços
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Results Section -->
+    <main class="container main-results">
+        <div class="results-header">
+            <h2>Resultados encontrados</h2>
+            <div class="filters">
+                <span>Filtrar por:</span>
+                <select id="sortFilter">
+                    <option value="recommended">Recomendados</option>
+                    <option value="lowest_price">Menor preço</option>
+                    <option value="highest_rating">Melhor avaliação</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="loadingIndicator" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Nossos robôs estão buscando as melhores ofertas...</p>
+        </div>
+
+        <div id="resultsGrid" class="results-grid">
+            <!-- Os cards serão injetados aqui pelo JavaScript -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="logo">
+                <i class="fa-solid fa-paw icon-logo"></i>
+                <span>PetCompare <strong>Compare</strong></span>
+            </div>
+            <p>© 2024 PetCompare Automation. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+</body>
+</html>
