@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
             reviews: 128,
             price: 80.00,
             source: "DogHero",
+            url: "https://www.doghero.com.br",
             image: "https://images.unsplash.com/photo-1601758228041-f3b279ce7bec?auto=format&fit=crop&w=600&q=80"
         },
         {
@@ -34,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             reviews: 85,
             price: 65.00,
             source: "Google Maps",
+            url: "https://www.google.com/maps",
             image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=600&q=80"
         },
         {
@@ -45,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
             reviews: 312,
             price: 150.00,
             source: "DogHero",
+            url: "https://www.doghero.com.br",
             image: "https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?auto=format&fit=crop&w=600&q=80"
         },
         {
@@ -56,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
             reviews: 42,
             price: 50.00,
             source: "GetNinjas",
+            url: "https://www.getninjas.com.br",
             image: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=600&q=80"
         },
         {
@@ -67,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
             reviews: 67,
             price: 55.00,
             source: "DogHero",
+            url: "https://www.doghero.com.br",
             image: "https://images.unsplash.com/photo-1537151608804-ea6f1cb53cb1?auto=format&fit=crop&w=600&q=80"
         },
         {
@@ -78,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
             reviews: 90,
             price: 70.00,
             source: "Google Maps",
+            url: "https://www.google.com/maps",
             image: "https://images.unsplash.com/photo-1591160690555-5debfba289f0?auto=format&fit=crop&w=600&q=80"
         }
     ];
@@ -90,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Função para criar o HTML de um Card
     const createCardHTML = (petService) => {
         return `
-            <div class="pet-card">
+            <div class="pet-card" data-id="${petService.id}">
                 <div class="card-image-wrapper">
                     <span class="badge-source"><i class="fa-solid fa-robot"></i> via ${petService.source}</span>
                     <img src="${petService.image}" alt="${petService.name}">
@@ -107,13 +113,19 @@ document.addEventListener("DOMContentLoaded", () => {
                         <i class="fa-solid fa-map-pin"></i>
                         <span>${petService.address}</span>
                     </div>
+                    <div class="card-reviews">
+                        <i class="fa-solid fa-comments"></i>
+                        <span>${petService.reviews} avaliações</span>
+                    </div>
                     
                     <div class="card-footer">
                         <div class="price-box">
                             <span class="price-label">Menor preço por noite</span>
                             <span class="price-value">${formatCurrency(petService.price)}</span>
                         </div>
-                        <button class="btn-book">Ver Oferta</button>
+                        <a href="${petService.url}" target="_blank" rel="noopener noreferrer" class="btn-book">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver Oferta
+                        </a>
                     </div>
                 </div>
             </div>
@@ -195,7 +207,84 @@ document.addEventListener("DOMContentLoaded", () => {
             btnSearch.click();
         }
     });
-    
+
+    // ===========================
+    // MODAL DE LOGIN ("Entrar")
+    // ===========================
+    const loginModal = document.getElementById("loginModal");
+    const btnEntrar = document.getElementById("btnEntrar");
+    const btnCloseModal = document.getElementById("btnCloseModal");
+    const loginForm = document.getElementById("loginForm");
+
+    if (btnEntrar && loginModal) {
+        btnEntrar.addEventListener("click", (e) => {
+            e.preventDefault();
+            loginModal.classList.add("active");
+            document.body.style.overflow = "hidden";
+        });
+
+        btnCloseModal.addEventListener("click", () => {
+            loginModal.classList.remove("active");
+            document.body.style.overflow = "";
+        });
+
+        // Fechar ao clicar fora do modal
+        loginModal.addEventListener("click", (e) => {
+            if (e.target === loginModal) {
+                loginModal.classList.remove("active");
+                document.body.style.overflow = "";
+            }
+        });
+
+        // Fechar com ESC
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && loginModal.classList.contains("active")) {
+                loginModal.classList.remove("active");
+                document.body.style.overflow = "";
+            }
+        });
+
+        // Submit do form de login
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const email = document.getElementById("loginEmail").value;
+            const password = document.getElementById("loginPassword").value;
+
+            if (!email || !password) {
+                alert("Preencha todos os campos!");
+                return;
+            }
+
+            // Simulação de login (no futuro conectar com a API)
+            const btnSubmit = loginForm.querySelector('button[type="submit"]');
+            btnSubmit.textContent = "Entrando...";
+            btnSubmit.disabled = true;
+
+            setTimeout(() => {
+                alert(`Bem-vindo(a) ao PetCompare! 🐾\n\nLogin com: ${email}`);
+                loginModal.classList.remove("active");
+                document.body.style.overflow = "";
+                btnSubmit.textContent = "Entrar";
+                btnSubmit.disabled = false;
+                loginForm.reset();
+
+                // Muda o botão "Entrar" para mostrar que está logado
+                btnEntrar.innerHTML = '<i class="fa-solid fa-user"></i> Minha Conta';
+            }, 1000);
+        });
+    }
+
+    // ===========================
+    // LINK "Painel dos Robôs"
+    // ===========================
+    const btnPainel = document.getElementById("btnPainel");
+    if (btnPainel) {
+        btnPainel.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.open("/docs", "_blank");
+        });
+    }
+
     // Inicia com alguns resultados padrão
     renderResults(mockData);
 });

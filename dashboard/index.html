@@ -28,8 +28,8 @@
             </div>
             <div class="nav-links">
                 <a href="#" class="active">Buscar Hospedagem</a>
-                <a href="#">Painel dos Robôs</a>
-                <button class="btn-primary">Entrar</button>
+                <a href="#" id="btnPainel">Painel dos Robôs</a>
+                <button id="btnEntrar" class="btn-primary">Entrar</button>
             </div>
         </div>
     </nav>
@@ -96,6 +96,30 @@
             <p>© 2024 PetCompare Automation. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content glass-effect">
+            <button id="btnCloseModal" class="modal-close">&times;</button>
+            <div class="modal-header">
+                <i class="fa-solid fa-paw modal-icon"></i>
+                <h2>Entrar no PetCompare</h2>
+                <p>Acesse sua conta para salvar favoritos e receber alertas de preço.</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail"><i class="fa-solid fa-envelope"></i> E-mail</label>
+                    <input type="email" id="loginEmail" placeholder="seuemail@exemplo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword"><i class="fa-solid fa-lock"></i> Senha</label>
+                    <input type="password" id="loginPassword" placeholder="Sua senha" required>
+                </div>
+                <button type="submit" class="btn-login">Entrar</button>
+                <p class="modal-footer-text">Não tem conta? <a href="#">Cadastre-se grátis</a></p>
+            </form>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="js/app.js"></script>
